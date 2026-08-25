@@ -1,0 +1,25 @@
+# secrets — never rely on this alone; it does nothing to a tracked file
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# go
+/api/mise-api
+
+# data — bulk artifacts stay out of git
+data/
+*.db
+*.sqlite3
+snapshots/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
