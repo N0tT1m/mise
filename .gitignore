@@ -11,6 +11,7 @@ venv/
 *.egg-info/
 
 # go
+/api/api
 /api/mise-api
 
 # data — bulk artifacts stay out of git
