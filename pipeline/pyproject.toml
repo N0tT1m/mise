@@ -7,7 +7,11 @@ name = "mise-pipeline"
 version = "0.1.0"
 description = "Offline pipeline for Mise: ingest -> extract -> resolve -> publish."
 requires-python = ">=3.11"
-dependencies = ["psycopg[binary]>=3.2", "click>=8.1"]
+dependencies = [
+    "psycopg[binary]>=3.2",
+    "click>=8.1",
+    "pandas>=3.0.5",
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]

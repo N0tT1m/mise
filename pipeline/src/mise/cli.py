@@ -15,7 +15,7 @@ def main() -> None:
 
 @main.command()
 @click.option("--source", required=True, help="Source tag, e.g. 'dataset:indian'.")
-@click.option("--path", required=True, help="File or directory to ingest.")
+@click.option("--path", required=True, help="Directory to ingest.")
 def ingest_cmd(source: str, path: str) -> None:
     """Stage 1: load recipes with raw payloads intact."""
     click.echo(ingest.run(Config.from_env(), source, path))
