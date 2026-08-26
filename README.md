@@ -5,8 +5,10 @@ match against what's in your fridge, generate new ones grounded in real ones.
 
 **Spec:** https://claude.ai/code/artifact/f34f03b2-c297-4554-9365-449e6442ee39
 
-This is a scaffold. Nothing is implemented yet — every stage and endpoint is a
-stub. The schema is real and applies cleanly.
+Phase 0 (ingest) is done: 20,366 recipes and 228,067 ingredient lines load
+from two source corpora, idempotently, with the original record preserved
+verbatim. Phases 1-5 are stubs — extract, resolve, publish, and every HTTP
+endpoint still raise or return 501.
 
 ## Layout
 
@@ -38,6 +40,21 @@ And the API (Go 1.25+, no dependencies yet):
 
     cd api && cp .env.example .env
     set -a; . ./.env; set +a && go run .
+
+## The corpus
+
+`data/` is gitignored — the recipe data is not redistributed here. Two
+Kaggle-derived sets, one directory each, one JSON file per directory:
+
+    data/recipes/recipe_dataset_simple/training.json   13,495 recipes
+    data/recipes/indian_recipe_api/training.json        6,871 recipes
+
+Each file is a JSON array of `{input_data, output_data}` records. Check the
+licence on the original datasets before redistributing anything derived from
+them; nothing in this repository grants rights to the data.
+
+To point the pipeline at your own corpus, match that shape and directory
+layout — one JSON array per directory, `ingest` takes it from there.
 
 ## Build order
 
