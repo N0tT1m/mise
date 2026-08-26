@@ -3,7 +3,7 @@
 A cooking platform built on one canonical ingredient graph: find recipes,
 match against what's in your fridge, generate new ones grounded in real ones.
 
-**Spec:** https://claude.ai/code/artifact/f34f03b2-c297-4554-9365-449e6442ee39
+**Spec:** [docs/spec.md](docs/spec.md)
 
 Phase 0 (ingest) is done: 20,366 recipes and 228,067 ingredient lines load
 from two source corpora, idempotently, with the original record preserved
@@ -58,7 +58,7 @@ layout — one JSON array per directory, `ingest` takes it from there.
 
 ## Build order
 
-Phases are in the spec, section 8.
+Phases are in [the spec, section 8](docs/spec.md#8-build-phases).
 
 Phase 0 (ingest) is done. The corpus lives in `data/` — gitignored, two source
 files, 20,366 recipes and 228,067 ingredient lines between them:
