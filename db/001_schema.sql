@@ -77,10 +77,12 @@ CREATE TABLE recipes (
     parser_version          int NOT NULL DEFAULT 0,
     created_at              timestamptz NOT NULL DEFAULT now()
 );
-
 CREATE INDEX recipes_required_idx ON recipes USING gin (required_ingredient_ids gin__int_ops);
 CREATE INDEX recipes_all_idx      ON recipes USING gin (all_ingredient_ids gin__int_ops);
-CREATE INDEX recipes_source_idx   ON recipes (source);
+-- Unique so source_ref actually identifies a record within its source,
+-- and so re-ingesting the same corpus is a no-op rather than a duplicate.
+-- Covers plain `source` lookups too, via the leftmost-prefix rule.
+CREATE UNIQUE INDEX recipes_source_ref_idx ON recipes (source, source_ref);
 CREATE INDEX recipes_fts_idx      ON recipes
     USING gin (to_tsvector('english', title || ' ' || coalesce(description, '')));
 
